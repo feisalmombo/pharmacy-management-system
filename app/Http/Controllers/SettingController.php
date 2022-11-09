@@ -10,5 +10,5 @@ use QCod\AppSettings\SavesSettings;
 class SettingController extends Controller
 {
     use SavesSettings;
-    
+
 }
