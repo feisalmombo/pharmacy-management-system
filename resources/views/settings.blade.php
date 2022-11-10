@@ -22,9 +22,9 @@
 
 @section('content')
 
-<div class="row">				
+<div class="row">
 	<div class="col-12">
-		@include('app_settings::_settings')	
+		@include('app_settings::_settings')
 	</div>
 </div>
 @endsection
