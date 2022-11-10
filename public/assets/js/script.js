@@ -6,19 +6,19 @@ Version      : 1.3
 
 (function($) {
     "use strict";
-	
+
 	// Variables declarations
-	
+
 	var $wrapper = $('.main-wrapper');
 	var $pageWrapper = $('.page-wrapper');
 	var $slimScrolls = $('.slimscroll');
-	
+
 	// Sidebar
-	
+
 	var Sidemenu = function() {
 		this.$menuItem = $('#sidebar-menu a');
 	};
-	
+
 	function init() {
 		var $this = Sidemenu;
 		$('#sidebar-menu a').on('click', function(e) {
@@ -37,12 +37,12 @@ Version      : 1.3
 		});
 		$('#sidebar-menu ul li.submenu a.active').parents('li:last').children('a:first').addClass('active').trigger('click');
 	}
-	
+
 	// Sidebar Initiate
 	init();
-	
+
 	// Mobile menu sidebar overlay
-	
+
 	$('body').append('<div class="sidebar-overlay"></div>');
 	$(document).on('click', '#mobile_btn', function() {
 		$wrapper.toggleClass('slide-nav');
@@ -50,35 +50,35 @@ Version      : 1.3
 		$('html').addClass('menu-opened');
 		return false;
 	});
-	
+
 	// Sidebar overlay
-	
+
 	$(".sidebar-overlay").on("click", function () {
 		$wrapper.removeClass('slide-nav');
 		$(".sidebar-overlay").removeClass("opened");
 		$('html').removeClass('menu-opened');
 	});
-	
+
 	// Page Content Height
-	
+
 	if($('.page-wrapper').length > 0 ){
-		var height = $(window).height();	
+		var height = $(window).height();
 		$(".page-wrapper").css("min-height", height);
 	}
-	
+
 	// Page Content Height Resize
-	
+
 	$(window).resize(function(){
 		if($('.page-wrapper').length > 0 ){
 			var height = $(window).height();
 			$(".page-wrapper").css("min-height", height);
 		}
 	});
-	
-	
-	
+
+
+
 	// Datetimepicker
-	
+
 	if($('.datetimepicker').length > 0 ){
 		$('.datetimepicker').datetimepicker({
 			format: 'DD/MM/YYYY',
@@ -97,13 +97,13 @@ Version      : 1.3
 	}
 
 	// Tooltip
-	
+
 	if($('[data-toggle="tooltip"]').length > 0 ){
 		$('[data-toggle="tooltip"]').tooltip();
 	}
-	
-   
-	
+
+
+
 	// Email Inbox
 
 	if($('.clickable-row').length > 0 ){
@@ -113,7 +113,7 @@ Version      : 1.3
 	}
 
 	// Check all email
-	
+
 	$(document).on('click', '#check_all', function() {
 		$('.checkmail').click();
 		return false;
@@ -129,15 +129,15 @@ Version      : 1.3
 			});
 		});
 	}
-	
+
 	// Mail important
-	
+
 	$(document).on('click', '.mail-important', function() {
 		$(this).find('i.fa').toggleClass('fa-star').toggleClass('fa-star-o');
 	});
-	
+
 	// Summernote
-	
+
 	if($('.summernote').length > 0) {
 		$('.summernote').summernote({
 			height: 200,                 // set editor height
@@ -146,7 +146,7 @@ Version      : 1.3
 			focus: false                 // set focus to editable area after initializing summernote
 		});
 	}
-	
+
     // Product thumb images
 
     if ($('.proimage-thumb li a').length > 0) {
@@ -167,7 +167,7 @@ Version      : 1.3
             selector: 'a'
         });
     }
-	
+
 	// Sidebar Slimscroll
 
 	if($slimScrolls.length > 0) {
@@ -190,7 +190,7 @@ Version      : 1.3
 			$('.sidebar .slimScrollDiv').height(rHeight);
 		});
 	}
-	
+
 	// Small Sidebar
 
 	$(document).on('click', '#toggle_btn', function() {
@@ -201,7 +201,7 @@ Version      : 1.3
 			$('body').addClass('mini-sidebar');
 			$('.subdrop + ul').slideUp();
 		}
-		setTimeout(function(){ 
+		setTimeout(function(){
 			mA.redraw();
 			mL.redraw();
 		}, 300);
@@ -221,11 +221,11 @@ Version      : 1.3
 			return false;
 		}
 	});
-	
-	
+
+
 
 	$(document).ready(function(){
-		
+
 		// delete confirmation modal
 		$('.deletebtn').on('click',function (){
 			event.preventDefault();
@@ -235,8 +235,8 @@ Version      : 1.3
 			console.log(id);
 			$('#delete_id').val(id);
 		});
-		
-		
+
+
 	});
-		
+
 })(jQuery);
