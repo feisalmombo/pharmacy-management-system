@@ -43,6 +43,7 @@ Route::group(['middleware'=>['guest']],function (){
     Route::post('forgot-password',[ForgotPasswordController::class,'reset']);
 });
 
+// Auth Routes
 Route::group(['middleware'=>['auth']],function (){
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::get('logout',[LogoutController::class,'index'])->name('logout');
