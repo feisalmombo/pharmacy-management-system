@@ -114,9 +114,10 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('profile',[UserController::class,'updateProfile']);
     Route::put('profile',[UserController::class,'updatePassword'])->name('update-password');
 
-    // Setting Routes
+    // Settings Routes
     Route::get('settings',[SettingController::class,'index'])->name('settings');
 
+    // Notification Routes
     Route::get('notification',[NotificationController::class,'markAsRead'])->name('mark-as-read');
     Route::get('notification-read',[NotificationController::class,'read'])->name('read');
 
