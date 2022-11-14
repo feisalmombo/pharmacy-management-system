@@ -121,13 +121,16 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('notification',[NotificationController::class,'markAsRead'])->name('mark-as-read');
     Route::get('notification-read',[NotificationController::class,'read'])->name('read');
 
+    // Reports Routes
     Route::get('reports',[ReportController::class,'index'])->name('reports');
     Route::post('reports',[ReportController::class,'getData']);
 
+    // Backup Routes
     Route::get('backup',[BackupController::class,'index'])->name('backup-app');
     Route::get('backup-app',[BackupController::class,'database'])->name('backup-db');
 });
 
+// First Page Routes
 Route::get('/', function () {
     return redirect()->route('dashboard');
 });
