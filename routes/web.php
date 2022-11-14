@@ -109,10 +109,12 @@ Route::group(['middleware'=>['auth']],function (){
     Route::put('users',[UserController::class,'update']);
     Route::delete('users',[UserController::class,'destroy']);
 
+    // Profile Routes
     Route::get('profile',[UserController::class,'profile'])->name('profile');
     Route::post('profile',[UserController::class,'updateProfile']);
     Route::put('profile',[UserController::class,'updatePassword'])->name('update-password');
 
+    // Setting Routes
     Route::get('settings',[SettingController::class,'index'])->name('settings');
 
     Route::get('notification',[NotificationController::class,'markAsRead'])->name('mark-as-read');
