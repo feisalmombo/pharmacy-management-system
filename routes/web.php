@@ -32,13 +32,15 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 Route::group(['middleware'=>['guest']],function (){
+    //Login Routes
     Route::get('login',[LoginController::class,'index'])->name('login');
     Route::post('login',[LoginController::class,'login']);
+
+    //Register Routes
     Route::get('register',[RegisterController::class,'index'])->name('register');
     Route::post('register',[RegisterController::class,'store']);
 
-
-
+    // Forgot-password Routes
     Route::get('forgot-password',[ForgotPasswordController::class,'index'])->name('forgot-password');
     Route::post('forgot-password',[ForgotPasswordController::class,'reset']);
 });
