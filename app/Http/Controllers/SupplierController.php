@@ -17,6 +17,7 @@ class SupplierController extends Controller
     {
         $title ="Suppliers";
         $suppliers = Supplier::get();
+
         return view('suppliers',compact('title','suppliers'));
     }
 
@@ -29,6 +30,7 @@ class SupplierController extends Controller
     {
         $title = "add supplier";
         $products = Product::get();
+
         return view('add-supplier',compact(
             'title','products'
         ));
@@ -78,6 +80,7 @@ class SupplierController extends Controller
         $title = "edit Supplier";
         $products = Product::get();
         $supplier = Supplier::find($id);
+
         return view('edit-supplier',compact(
             'title','products','supplier'
         ));
@@ -107,6 +110,7 @@ class SupplierController extends Controller
             'message'=>"Supplier has been updated",
             'alert-type'=>'success',
         );
+
         return redirect()->route('suppliers')->with($notification);
     }
 
@@ -124,6 +128,7 @@ class SupplierController extends Controller
             'message'=>"Supplier has been deleted",
             'alert-type'=>'success',
         );
+
         return back()->with($notification);
     }
 }
