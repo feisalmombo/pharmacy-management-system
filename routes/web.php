@@ -69,6 +69,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('products/{product}',[ProductController::class,'update']);
     Route::delete('products',[ProductController::class,'destroy']);
 
+    // Suppliers Routes
     Route::get('suppliers',[SupplierController::class,'index'])->name('suppliers');
     Route::get('add-supplier',[SupplierController::class,'create'])->name('add-supplier');
     Route::post('add-supplier',[SupplierController::class,'store']);
@@ -76,6 +77,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::delete('suppliers',[SupplierController::class,'destroy']);
     Route::put('suppliers/{supplier}}',[SupplierController::class,'update'])->name('edit-supplier');
 
+    // Purchases Routes
     Route::get('purchases',[PurchaseController::class,'index'])->name('purchases');
     Route::get('add-purchase',[PurchaseController::class,'create'])->name('add-purchase');
     Route::post('add-purchase',[PurchaseController::class,'store']);
@@ -83,11 +85,13 @@ Route::group(['middleware'=>['auth']],function (){
     Route::put('purchases/{purchase}',[PurchaseController::class,'update']);
     Route::delete('purchases',[PurchaseController::class,'destroy']);
 
+    // Sales Routes
     Route::get('sales',[SalesController::class,'index'])->name('sales');
     Route::post('sales',[SalesController::class,'store']);
     Route::put('sales',[SalesController::class,'update']);
     Route::delete('sales',[SalesController::class,'destroy']);
 
+    // Permissions Routes
     Route::get('permissions',[PermissionController::class,'index'])->name('permissions');
     Route::post('permissions',[PermissionController::class,'store']);
     Route::put('permissions',[PermissionController::class,'update']);
