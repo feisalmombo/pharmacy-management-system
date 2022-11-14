@@ -53,11 +53,13 @@ Route::group(['middleware'=>['auth']],function (){
     // Logout Routes
     Route::get('logout',[LogoutController::class,'index'])->name('logout');
 
+    // Categories Routes
     Route::get('categories',[CategoryController::class,'index'])->name('categories');
     Route::post('categories',[CategoryController::class,'store']);
     Route::put('categories',[CategoryController::class,'update']);
     Route::delete('categories',[CategoryController::class,'destroy']);
 
+    // Products Routes
     Route::get('products',[ProductController::class,'index'])->name('products');
     Route::get('products/create',[ProductController::class,'create'])->name('add-product');
     Route::get('expired-products',[ProductController::class,'expired'])->name('expired');
