@@ -45,7 +45,10 @@ Route::group(['middleware'=>['guest']],function (){
 
 // Auth Routes
 Route::group(['middleware'=>['auth']],function (){
+    // Dashboard Routes
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+
+    // Logout Routes
     Route::get('logout',[LogoutController::class,'index'])->name('logout');
 
     Route::get('categories',[CategoryController::class,'index'])->name('categories');
