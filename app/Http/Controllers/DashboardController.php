@@ -14,18 +14,18 @@ use App\Events\ProductReachedLowStock;
 
 class DashboardController extends Controller
 {
-    public function index(){   
+    public function index(){
         $title = "dashboard";
-        
+
         $total_purchases = Purchase::where('expiry_date','=',Carbon::now())->count();
         $total_categories = Category::count();
         $total_suppliers = Supplier::count();
         $total_sales = Sales::count();
-        
+
         $pieChart = app()->chartjs
                 ->name('pieChart')
                 ->type('pie')
-                ->size(['width' => 400, 'height' => 200])
+                ->size(['width' => 300, 'height' => 100])
                 ->labels(['Total Purchases', 'Total Suppliers','Total Sales'])
                 ->datasets([
                     [
@@ -35,9 +35,9 @@ class DashboardController extends Controller
                     ]
                 ])
                 ->options([]);
-        
-                
-        
+
+
+
         $total_expired_products = Purchase::whereDate('expiry_date', '=', Carbon::now())->count();
         $latest_sales = Sales::whereDate('created_at','=',Carbon::now())->get();
         $today_sales = Sales::whereDate('created_at','=',Carbon::now())->sum('total_price');
