@@ -97,11 +97,13 @@ Route::group(['middleware'=>['auth']],function (){
     Route::put('permissions',[PermissionController::class,'update']);
     Route::delete('permissions',[PermissionController::class,'destroy']);
 
+    // Roles Routes
     Route::get('roles',[RoleController::class,'index'])->name('roles');
     Route::post('roles',[RoleController::class,'store']);
     Route::put('roles',[RoleController::class,'update']);
     Route::delete('roles',[RoleController::class,'destroy']);
 
+    // Users Routes
     Route::get('users',[UserController::class,'index'])->name('users');
     Route::post('users',[UserController::class,'store']);
     Route::put('users',[UserController::class,'update']);
