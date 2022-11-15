@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class SystemUsersController extends Controller
 {
-    //
+    public function AllSystemUsers()
+    {
+
+    }
 }
