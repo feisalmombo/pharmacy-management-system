@@ -33,6 +33,7 @@
                 	<div class="loginbox">
                     	<div class="login-left">
 							{{--  <img class="img-fluid" src="@if(!empty(AppSettings::get('logo'))) {{asset('storage/'.AppSettings::get('logo'))}} @else{{asset('assets/img/logo.jpg')}} @endif" alt="Logo">  --}}
+							{{--  <img class="img-fluid" src="@if(!empty(AppSettings::get('logo'))) {{asset('storage/'.AppSettings::get('logo'))}} @else{{asset('assets/img/logo.jpg')}} @endif" alt="Logo">  --}}
                             <h1 style="color: #ffffff">Pharmacy Management System</h1>
                         </div>
                         <div class="login-right">
