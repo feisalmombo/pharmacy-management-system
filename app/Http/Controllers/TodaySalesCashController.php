@@ -8,6 +8,6 @@ class TodaySalesCashController extends Controller
 {
     public function TodaySalesCash()
     {
-        
+        //
     }
 }

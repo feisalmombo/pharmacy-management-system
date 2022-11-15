@@ -53,6 +53,7 @@ class SupplierController extends Controller
             'address'=>'required|max:200',
             'description' =>'max:200',
         ]);
+
         Supplier::create([
             'name'=>$request->name,
             'email'=>$request->email,
@@ -62,10 +63,12 @@ class SupplierController extends Controller
             'product'=>$request->product,
             'description'=>$request->description,
         ]);
+
         $notification = array(
             'message'=>"Supplier has been added",
             'alert-type'=>'success',
         );
+
         return redirect()->route('suppliers')->with($notification);
     }
 
