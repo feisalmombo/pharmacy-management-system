@@ -2,7 +2,6 @@
 
 @section('content')
 <h1>Register</h1>
-{{--  <p class="account-subtitle">Access to our dashboard</p>  --}}
 
 <!-- Form -->
 <form action="{{route('register')}}" method="POST">
