@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class ExpiredProductsController extends Controller
 {
-    //
+    public function AllExpiredProducts()
+    {
+
+    }
 }
