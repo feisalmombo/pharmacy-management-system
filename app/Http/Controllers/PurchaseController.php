@@ -18,6 +18,7 @@ class PurchaseController extends Controller
     {
         $title = "purchases";
         $purchases = Purchase::with('category')->get();
+
         return view('purchases',compact(
             'title','purchases'
         ));
@@ -33,6 +34,7 @@ class PurchaseController extends Controller
         $title = "add Purhase";
         $categories = Category::get();
         $suppliers = Supplier::get();
+
         return view('add-purchase',compact(
             'title','categories','suppliers'
         ));
@@ -55,11 +57,13 @@ class PurchaseController extends Controller
             'supplier'=>'required',
             'image'=>'file|image|mimes:jpg,jpeg,png,gif',
         ]);
+
         $imageName = null;
         if($request->hasFile('image')){
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('storage/purchases'), $imageName);
         }
+
         Purchase::create([
             'name'=>$request->name,
             'category_id'=>$request->category,
@@ -69,10 +73,12 @@ class PurchaseController extends Controller
             'expiry_date'=>$request->expiry_date,
             'image'=>$imageName,
         ]);
+
         $notifications = array(
             'message'=>"Purchase has been added",
             'alert-type'=>'success',
         );
+
         return redirect()->route('purchases')->with($notifications);
     }
 
@@ -88,6 +94,7 @@ class PurchaseController extends Controller
         $purchase = Purchase::find($id);
         $categories = Category::get();
         $suppliers = Supplier::get();
+
         return view('edit-purchase',compact(
             'title','purchase','categories','suppliers'
         ));
@@ -111,12 +118,13 @@ class PurchaseController extends Controller
             'supplier'=>'required',
             'image'=>'file|image|mimes:jpg,jpeg,png,gif',
         ]);
+
         $imageName = null;
         if($request->hasFile('image')){
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('storage/purchases'), $imageName);
         }
-        
+
         $purchase->update([
             'name'=>$request->name,
             'category_id'=>$request->category,
@@ -126,10 +134,12 @@ class PurchaseController extends Controller
             'expiry_date'=>$request->expiry_date,
             'image'=>$imageName,
         ]);
+
         $notifications = array(
             'message'=>"Purchase has been updated",
             'alert-type'=>'success',
         );
+
         return redirect()->route('purchases')->with($notifications);
     }
 
@@ -143,10 +153,12 @@ class PurchaseController extends Controller
     {
         $purchase = Purchase::find($request->id);
         $purchase->delete();
+
         $notification =array(
             'message'=>"Purchase has been deleted",
             'alert-type'=>'success'
         );
+
         return back()->with($notification);
     }
 }

@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         $title = "products";
         $products = Product::with('purchase')->get();
-    
+
         return view('products',compact(
             'title','products',
         ));
@@ -32,11 +32,12 @@ class ProductController extends Controller
     public function create(){
         $title= "Add Product";
         $products = Purchase::get();
+
         return view('add-product',compact(
             'title','products',
         ));
     }
-    
+
 
     /**
      * Display a listing of expired resources.
@@ -46,7 +47,7 @@ class ProductController extends Controller
     public function expired(){
         $title = "expired Products";
         $products = Purchase::whereDate('expiry_date', '=', Carbon::now())->get();
-        
+
         return view('expired',compact(
             'title','products'
         ));
@@ -62,12 +63,12 @@ class ProductController extends Controller
         $products = Purchase::where('quantity', '<=', 0)->get();
         $product = Purchase::where('quantity', '<=', 0)->first();
         // auth()->user()->notify(new StockAlert($product));
-        
+
         return view('outstock',compact(
             'title','products',
         ));
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -83,6 +84,7 @@ class ProductController extends Controller
             'discount'=>'nullable',
             'description'=>'nullable|max:200',
         ]);
+
         $price = $request->price;
         if($request->discount >0){
            $price = $request->discount * $request->price;
@@ -93,10 +95,12 @@ class ProductController extends Controller
             'discount'=>$request->discount,
             'description'=>$request->description,
         ]);
+
         $notification=array(
             'message'=>"Product has been added",
             'alert-type'=>'success',
         );
+
         return redirect()->route('products')->with($notification);
     }
 
@@ -112,6 +116,7 @@ class ProductController extends Controller
         $title = "Edit Product";
         $product = Product::find($id);
         $purchased_products = Purchase::get();
+
         return view('edit-product',compact(
             'title','product','purchased_products'
         ));
@@ -132,7 +137,7 @@ class ProductController extends Controller
             'discount'=>'nullable',
             'description'=>'nullable|max:200',
         ]);
-        
+
         $price = $request->price;
         if($request->discount >0){
            $price = $request->discount * $request->price;
@@ -143,10 +148,12 @@ class ProductController extends Controller
             'discount'=>$request->discount,
             'description'=>$request->description,
         ]);
+
         $notification=array(
             'message'=>"Product has been updated",
             'alert-type'=>'success',
         );
+
         return redirect()->route('products')->with($notification);
     }
 
@@ -160,10 +167,12 @@ class ProductController extends Controller
     {
         $product = Product::find($request->id);
         $product->delete();
+
         $notification = array(
             'message'=>"Product has been deleted",
             'alert-type'=>'success',
         );
+
         return back()->with($notification);
     }
 }
