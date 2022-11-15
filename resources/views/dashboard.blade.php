@@ -8,6 +8,7 @@
 	<h3 class="page-title">Welcome {{auth()->user()->name}}!</h3>
 	<ul class="breadcrumb">
 		<li class="breadcrumb-item active">Dashboard</li>
+        {{--  This Dashboard must be differentiate based on Roles and Permission for each users within the system  --}}
 	</ul>
 </div>
 @endpush
@@ -83,6 +84,8 @@
                 </div>
             </a>
 		</div>
+
+        @can('view-system-users')
 		<div class="col-xl-3 col-sm-6 col-12">
             <a href="#">
                 <div class="card">
@@ -106,6 +109,8 @@
                 </div>
             </a>
 		</div>
+		@endcan
+
 	</div>
 	<div class="row">
 		<div class="col-md-12 col-lg-6">

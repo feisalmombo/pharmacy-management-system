@@ -81,7 +81,7 @@
 					<a href="{{route('users')}}"><i class="fe fe-users"></i> <span>Users</span></a>
 				</li>
 				@endcan
-				
+
 				<li class="{{ Request::routeIs('profile') ? 'active' : '' }}">
 					<a href="{{route('profile')}}"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
 				</li>
