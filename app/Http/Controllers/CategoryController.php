@@ -16,6 +16,7 @@ class CategoryController extends Controller
     {
         $title = "categories";
         $categories = Category::get();
+
         return view('categories',compact(
             'title','categories',
         ));
@@ -32,11 +33,14 @@ class CategoryController extends Controller
         $this->validate($request,[
             'name'=>'required|max:100',
         ]);
+
         Category::create($request->all());
+
         $notification=array(
             'message'=>"Category has been added",
             'alert-type'=>'success',
         );
+
         return back()->with($notification);
     }
 
@@ -65,10 +69,12 @@ class CategoryController extends Controller
         $category->update([
             'name'=>$request->name,
         ]);
+
         $notification=array(
             'message'=>"Category has been updated",
             'alert-type'=>'success',
         );
+
         return back()->with($notification);
     }
 
@@ -82,10 +88,12 @@ class CategoryController extends Controller
     {
         $category = Category::find($request->id);
         $category->delete();
+
         $notification=array(
             'message'=>"Category has been deleted",
             'alert-type'=>'success',
         );
+        
         return back()->with($notification);
     }
 }

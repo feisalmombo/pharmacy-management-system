@@ -16,6 +16,7 @@ class PermissionController extends Controller
     {
         $title = "Permissions";
         $permissions =Permission::get();
+
         return view('permissions',compact(
             'title','permissions'
         ));
@@ -42,14 +43,17 @@ class PermissionController extends Controller
         $this->validate($request,[
             'permission'=>'required|max:200',
         ]);
+
         foreach (explode(',',$request->permission) as  $perm) {
             $permission = Permission::create(['name' => $perm]);
             $permission->assignRole('super-admin');
         }
+
         $notification = array(
             'message'=>"Permission Created Successfully!!",
             'alert-type'=>"success"
         );
+
         return back()->with($notification);
     }
 
@@ -97,10 +101,12 @@ class PermissionController extends Controller
     {
         $permission = Permission::find($request->id);
         $permission->delete();
+
         $notification = array(
             'message'=>"Permission has been deleted",
             'alert-type'=>'success',
         );
+
         return back()->with($notification);
     }
 }

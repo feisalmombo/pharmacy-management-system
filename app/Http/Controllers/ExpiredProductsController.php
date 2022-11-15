@@ -8,6 +8,6 @@ class ExpiredProductsController extends Controller
 {
     public function AllExpiredProducts()
     {
-
+        //
     }
 }
