@@ -19,6 +19,7 @@ class UserController extends Controller
         $title = "users";
         $users  = User::with('roles')->get();
         $roles = Role::get();
+
         return view('users',compact(
             'title','users','roles'
         ));
@@ -39,22 +40,26 @@ class UserController extends Controller
             'password'=>'required|confirmed|max:200',
             'avatar'=>'file|image|mimes:jpg,jpeg,gif,png',
         ]);
+
         $imageName = null;
         if($request->hasFile('avatar')){
             $imageName = time().'.'.$request->avatar->extension();
             $request->avatar->move(public_path('storage/users'), $imageName);
         }
+
         $user = User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
             'avatar'=>$imageName
         ]);
+
         $user->assignRole($request->role);
         $notification =array(
             'message'=>"User has been added!!!",
             'alert-type'=>'success'
         );
+
         return back()->with($notification);
     }
 
@@ -67,6 +72,7 @@ class UserController extends Controller
     {
         $title = "profile";
         $roles = Role::get();
+
         return view('profile',compact(
             'title','roles'
         ));
@@ -85,6 +91,7 @@ class UserController extends Controller
             'email'=>'required|email',
             'avatar'=>'file|image|mimes:jpg,jpeg,gif,png',
         ]);
+
         if($request->hasFile('avatar')){
             $imageName = time().'.'.$request->avatar->extension();
             $request->avatar->move(public_path('storage/users'), $imageName);
@@ -96,10 +103,12 @@ class UserController extends Controller
             'email'=>$request->email,
             'avatar'=>$imageName,
         ]);
+
         $notification =array(
             'message'=>"User profile has been updated !!!",
             'alert-type'=>'success'
         );
+
         return back()->with($notification);
     }
 
@@ -129,6 +138,7 @@ class UserController extends Controller
                 'message'=>"Old Password do not match!!!",
                 'alert-type'=>'danger'
             );
+
             return back()->with($notification);
         }
     }
@@ -159,11 +169,13 @@ class UserController extends Controller
             'password'=>'required|confirmed|max:200',
             'avatar'=>'file|image|mimes:jpg,jpeg,gif,png',
         ]);
+
         $imageName = auth()->user()->avatar;
         if($request->hasFile('avatar')){
             $imageName = time().'.'.$request->avatar->extension();
             $request->avatar->move(public_path('storage/users'), $imageName);
         }
+
         $user = User::find($request->id);
         $user->update([
             'name'=>$request->name,
@@ -171,11 +183,13 @@ class UserController extends Controller
             'password'=>Hash::make($request->password),
             'avatar'=>$imageName
         ]);
+
         $user->assignRole($request->role);
         $notification =array(
             'message'=>"User has been updated!!!",
             'alert-type'=>'success'
         );
+
         return back()->with($notification);
     }
 
@@ -193,13 +207,16 @@ class UserController extends Controller
                 'message'=>"Super admin cannot be deleted",
                 'alert-type'=>'warning',
             );
+
             return back()->with($notification);
         }
+
         $user->delete();
         $notification=array(
             'message'=>"User has been deleted",
             'alert-type'=>'success',
         );
+
         return back()->with($notification);
     }
 }
