@@ -22,7 +22,7 @@ class SalesController extends Controller
         $title = "sales";
         $products = Product::get();
         $sales = Sales::with('product')->latest()->get();
-                
+
         return view('sales',compact(
             'title','products','sales'
         ));
@@ -40,12 +40,14 @@ class SalesController extends Controller
             'product'=>'required',
             'quantity'=>'required|integer|min:1'
         ]);
+
         $sold_product = Product::find($request->product);
-        
-        /**update quantity of
+
+        /**Update quantity of
             sold item from
          purchases
         **/
+
         $purchased_item = Purchase::find($sold_product->purchase->id);
         $new_quantity = ($purchased_item->quantity) - ($request->quantity);
         $notification = '';
@@ -56,7 +58,7 @@ class SalesController extends Controller
             ]);
 
             /**
-             * calcualting item's total price
+             * Calcualting item's total price
             **/
             $total_price = ($request->quantity) * ($sold_product->price);
             Sales::create([
@@ -69,17 +71,17 @@ class SalesController extends Controller
                 'message'=>"Product has been sold",
                 'alert-type'=>'success',
             );
-        } 
+        }
         if($new_quantity <=1 && $new_quantity !=0){
-            // send notification 
+            // Send notification
             $product = Purchase::where('quantity', '<=', 1)->first();
             event(new PurchaseOutStock($product));
-            // end of notification 
+            // End of notification
             $notification = array(
                 'message'=>"Product is running out of stock!!!",
                 'alert-type'=>'danger'
             );
-            
+
         }
         return back()->with($notification);
     }
@@ -109,8 +111,8 @@ class SalesController extends Controller
             'quantity'=>'required|integer'
         ]);
         $sold_product = Product::find($request->product);
-        
-        /**update quantity of
+
+        /**Update quantity of
             sold item from
          purchases
         **/
@@ -123,7 +125,7 @@ class SalesController extends Controller
             ]);
 
             /**
-             * calcualting item's total price
+             * Calcualting item's total price
             **/
             $total_price = ($request->quantity) * ($sold_product->price);
             Sales::create([
@@ -137,23 +139,24 @@ class SalesController extends Controller
                 'alert-type'=>'success',
             );
         }
-        
+
         elseif($new_quantity <=3 && $new_quantity !=0){
-            // send notification 
+            // Send notification
             $product = Purchase::where('quantity', '<=', 3)->first();
             event(new PurchaseOutStock($product));
-            // end of notification 
+            // End of notification
             $notification = array(
                 'message'=>"Product is running out of stock!!!",
                 'alert-type'=>'danger'
             );
-            
+
         }
         else{
             $notification = array(
                 'message'=>"Please check purchase product quantity",
                 'alert-type'=>'info',
             );
+
             return back()->with($notification);
         }
     }
@@ -172,6 +175,7 @@ class SalesController extends Controller
             'message'=>"Sales has been deleted",
             'alert-type'=>'success'
         );
+
         return back()->with($notification);
     }
 }
