@@ -18,6 +18,7 @@ class RoleController extends Controller
         $title = "user Roles";
         $roles = Role::with('permissions')->get();
         $permissions = Permission::get();
+
         return view('roles',compact(
             'title','roles','permissions'
         ));
@@ -35,13 +36,16 @@ class RoleController extends Controller
             'role'=>'required|max:100',
             'permission'=>'required'
         ]);
+
         $role = Role::create(['name' => $request->role]);
         $permissions = $request->permission;
         $role->syncPermissions($permissions);
+
         $notification = array(
             'message'=>"Role Created Successfully!!",
             'alert-type'=>"success"
         );
+
         return back()->with($notification);
     }
 
@@ -69,12 +73,15 @@ class RoleController extends Controller
             'role'=>'required|max:100',
             'permission'=>'required'
         ]);
+
         $role = Role::find($request->id);
         $role->update([
             'name'=>$request->role,
         ]);
+
         $permissions = $request->permission;
         $role->syncPermissions($permissions);
+
         $notification = array(
             'message'=>"Role Updated Successfully!!",
             'alert-type'=>"success"
@@ -92,10 +99,12 @@ class RoleController extends Controller
     {
         $role = Role::find($request->id);
         $role->delete();
+
         $notification = array(
             'message'=>"Role deleted successfully!!.",
             'alert-type'=>'success'
         );
+
         return back()->with($notification);
     }
 }
