@@ -157,7 +157,7 @@
 			<!-- Pie Chart -->
 			<div class="card card-chart">
 				<div class="card-header">
-					<h4 class="card-title">Resources Sum</h4>
+					<h4 class="card-title">Resources Sum Chart Summary</h4>
 				</div>
 				<div class="card-body">
 					<div style="width:65%;">
