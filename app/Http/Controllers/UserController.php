@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 
 class UserController extends Controller
 {
@@ -37,7 +39,7 @@ class UserController extends Controller
             'name'=>'required|max:100',
             'email'=>'required|email',
             'role'=>'required',
-            'password'=>'required|confirmed|max:200',
+            'password'=>'required|confirmed|max:6',
             'avatar'=>'file|image|mimes:jpg,jpeg,gif,png',
         ]);
 
@@ -47,16 +49,23 @@ class UserController extends Controller
             $request->avatar->move(public_path('storage/users'), $imageName);
         }
 
-        $user = User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'avatar'=>$imageName
-        ]);
+        $plainPassword = $request->password;
 
+        $user = new User();
+        $user_name = $user->name = $request->name;
+        $user_email = $user->email = $request->email;
+        $user->password = Hash::make($plainPassword);
+
+        $user->$imageName;
         $user->assignRole($request->role);
+        $st = $user->save();
+
+        // Send welcome email
+        Mail::to($user->email)->send(new WelcomeMail($user, $plainPassword));
+
+
         $notification =array(
-            'message'=>"User has been added!!!",
+            'message'=>'User registered. Check your email for login details.',
             'alert-type'=>'success'
         );
 
@@ -176,21 +185,23 @@ class UserController extends Controller
             $request->avatar->move(public_path('storage/users'), $imageName);
         }
 
-        $user = User::find($request->id);
-        $user->update([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'avatar'=>$imageName
-        ]);
 
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user_email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->$imageName;
         $user->assignRole($request->role);
+        $st = $user->save();
+
+
         $notification =array(
-            'message'=>"User has been updated!!!",
+            'message'=>'User has been updated!!!',
             'alert-type'=>'success'
         );
 
         return back()->with($notification);
+
     }
 
     /**

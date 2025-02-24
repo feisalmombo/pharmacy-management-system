@@ -20,7 +20,7 @@
 
 
 @section('content')
-	
+
 <div class="row">
 	@isset($sales)
 	<div class="col-xl-3 col-sm-6 col-12">
@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<div class="dash-widget-info">
-					
+
 					<h6 class="text-muted">Total Sales</h6>
 					<div class="progress progress-sm">
 						<div class="progress-bar bg-success w-50"></div>
@@ -66,7 +66,7 @@
 	</div>
 	@endisset
 	<div class="col-md-12">
-	
+
 		@isset($sales)
 			<!--  Sales -->
 			<div class="card">
@@ -89,7 +89,7 @@
 											<td>{{$sale->quantity}}</td>
 											<td>{{AppSettings::get('app_currency', '$')}} {{($sale->total_price)}}</td>
 											<td>{{date_format(date_create($sale->created_at),"d M, Y")}}</td>
-											
+
 										</tr>
 									@endif
 								@endforeach
@@ -139,7 +139,7 @@
 											<td>{{$product->purchase->quantity}}</td>
 											<td>{{$product->discount}}%</td>
 											<td>
-											{{date_format(date_create($product->purchase->expiry_date),"d M, Y")}}</span>										
+											{{date_format(date_create($product->purchase->expiry_date),"d M, Y")}}</span>
 											</td>
 											<td>
 												<div class="actions">
@@ -154,7 +154,7 @@
 										</tr>
 									@endif
 								@endforeach
-								
+
 							</tbody>
 						</table>
 					</div>
@@ -162,7 +162,7 @@
 			</div>
 			<!-- /Products -->
 		@endisset
-		
+
 		@isset($purchases)
 			<!-- Purchases-->
 			<div class="card">
@@ -212,7 +212,7 @@
 									</tr>
 									@endif
 								@endforeach
-								
+
 							</tbody>
 						</table>
 					</div>
@@ -254,7 +254,7 @@
 							</div>
 							<div class="form-group">
 								<label>Resource</label>
-								<select class="form-control select" name="resource"> 
+								<select class="form-control select" name="resource">
 									<option value="products">Products</option>
 									<option value="purchases">Purchases</option>
 									<option value="sales">Sales</option>

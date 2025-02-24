@@ -18,7 +18,7 @@
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-	
+
 		<!-- Recent Orders -->
 		<div class="card">
 			<div class="card-body">
@@ -68,14 +68,14 @@
 								</td>
 							</tr>
 							@endforeach
-							
+
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 		<!-- /Recent Orders -->
-		
+
 	</div>
 </div>
 

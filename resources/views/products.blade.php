@@ -21,7 +21,7 @@
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-	
+
 		<!-- Products -->
 		<div class="card">
 			<div class="card-body">
@@ -59,7 +59,7 @@
 									<td>{{$product->purchase->quantity}}</td>
 									<td>{{$product->discount}}%</td>
 									<td>
-									{{date_format(date_create($product->purchase->expiry_date),"d M, Y")}}</span>										
+									{{date_format(date_create($product->purchase->expiry_date),"d M, Y")}}</span>
 									</td>
 									<td>
 										<div class="actions">
@@ -74,14 +74,14 @@
 								</tr>
 								@endif
 							@endforeach
-							
+
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 		<!-- /Products -->
-		
+
 	</div>
 </div>
 

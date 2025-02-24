@@ -13,6 +13,7 @@
 </div>
 @endpush
 
+@can('customer-view')
 @section('content')
 
 	<div class="row">
@@ -112,6 +113,7 @@
 		@endcan
 
 	</div>
+
 	<div class="row">
 		<div class="col-md-12 col-lg-6">
 
@@ -171,6 +173,7 @@
 
 
 	</div>
+
 	<div class="row">
 		<div class="col-md-12">
 
@@ -181,6 +184,7 @@
 		</div>
 	</div>
 @endsection
+@endcan
 
 @push('page-js')
 

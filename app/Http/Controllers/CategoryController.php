@@ -93,7 +93,7 @@ class CategoryController extends Controller
             'message'=>"Category has been deleted",
             'alert-type'=>'success',
         );
-        
+
         return back()->with($notification);
     }
 }
