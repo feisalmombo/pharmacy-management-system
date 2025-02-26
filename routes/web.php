@@ -105,9 +105,11 @@ Route::group(['middleware'=>['auth']],function (){
 
     // Users Routes
     Route::get('users',[UserController::class,'index'])->name('users');
+    Route::get('users/reset/{id}',[UserController::class,'resetpwd']);
     Route::post('users',[UserController::class,'store']);
     Route::put('users',[UserController::class,'update']);
     Route::delete('users',[UserController::class,'destroy']);
+
 
     // Profile Routes
     Route::get('profile',[UserController::class,'profile'])->name('profile');

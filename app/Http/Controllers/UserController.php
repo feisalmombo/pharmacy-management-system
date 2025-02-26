@@ -39,7 +39,7 @@ class UserController extends Controller
             'name'=>'required|max:100',
             'email'=>'required|email',
             'role'=>'required',
-            'password'=>'required|confirmed|max:6',
+            'password'=>'required|confirmed|max:100',
             'avatar'=>'file|image|mimes:jpg,jpeg,gif,png',
         ]);
 
@@ -202,6 +202,27 @@ class UserController extends Controller
 
         return back()->with($notification);
 
+    }
+
+
+    public function resetpwd($id)
+    {
+        $this->middleware(function ($request, $next) {
+            if (\Auth::user()->can('reset_password')) {
+                return $next($request);
+            }
+            return redirect()->back();
+        });
+        // dd($id);
+        $user = User::findOrFail($id);
+        $notification = User::findOrFail($id)->update(['password' => bcrypt('123456')]);
+
+        $notification =array(
+            'message'=>"Password is Successfully Reseted to 123456 for User: $user->name",
+            'alert-type'=>'success'
+        );
+
+        return back()->with($notification);
     }
 
     /**

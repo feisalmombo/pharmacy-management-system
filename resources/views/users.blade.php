@@ -32,6 +32,7 @@
 								<th>Name</th>
 								<th>Email</th>
 								<th>Role</th>
+								<th>Reset Password</th>
 								<th>Created date</th>
 								<th class="text-center action-btn">Actions</th>
 							</tr>
@@ -59,6 +60,13 @@
 									@endforeach
 								</td>
 								@endcan
+
+                                <td><a href="users/reset/{{$user->id}}" >
+                                    <span class="fa-passwd-reset fa-stack">
+                                      <i class="fa fa-undo fa-stack-2x"></i>
+                                      <i class="fa fa-lock fa-stack-1x"></i>
+                                    </span></a>
+                                </td>
 								<td>{{date_format(date_create($user->created_at),"d M,Y")}}</td>
 
 								<td class="text-center">
