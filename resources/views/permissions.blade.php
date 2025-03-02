@@ -36,11 +36,11 @@
 						</thead>
 						<tbody>
 							@foreach ($permissions as $permission)
-							<tr>								
+							<tr>
 								<td>
 									{{$permission->name}}
 								</td>
-								
+
 								<td>{{date_format(date_create($permission->created_at),"d M,Y")}}</td>
 
 								<td class="text-center">
@@ -58,13 +58,13 @@
 									</div>
 								</td>
 							</tr>
-							@endforeach							
+							@endforeach
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-	</div>			
+	</div>
 </div>
 
 <!-- Add Modal -->
@@ -118,7 +118,7 @@
 								<input type="text" class="form-control edit_permission" name="permission">
 							</div>
 						</div>
-						
+
 					</div>
 					<button type="submit" class="btn btn-primary btn-block">Save Changes</button>
 				</form>
@@ -151,5 +151,5 @@
 			//
 		});
 	</script>
-	
+
 @endpush

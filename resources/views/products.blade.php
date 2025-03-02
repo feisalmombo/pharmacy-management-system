@@ -13,9 +13,11 @@
 		<li class="breadcrumb-item active">Products</li>
 	</ul>
 </div>
+@can('create-product')
 <div class="col-sm-5 col">
 	<a href="{{route('add-product')}}" class="btn btn-primary float-right mt-2">Add New</a>
 </div>
+@endcan
 @endpush
 
 @section('content')
@@ -35,7 +37,9 @@
 								<th>Quantity</th>
 								<th>Discount</th>
 								<th>Expiry Date</th>
+                                @can('destroy-product')
 								<th class="action-btn">Action</th>
+                                @endcan
 							</tr>
 						</thead>
 						<tbody>
@@ -61,6 +65,7 @@
 									<td>
 									{{date_format(date_create($product->purchase->expiry_date),"d M, Y")}}</span>
 									</td>
+                                    @can('destroy-product')
 									<td>
 										<div class="actions">
 											<a class="btn btn-sm bg-success-light" href="{{route('edit-product',$product)}}">
@@ -71,6 +76,7 @@
 											</a>
 										</div>
 									</td>
+                                    @endcan
 								</tr>
 								@endif
 							@endforeach

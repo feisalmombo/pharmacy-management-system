@@ -19,6 +19,9 @@ class RoleController extends Controller
         $roles = Role::with('permissions')->get();
         $permissions = Permission::get();
 
+        // return json_encode($roles);
+        // return json_encode($permissions);
+
         return view('roles',compact(
             'title','roles','permissions'
         ));
