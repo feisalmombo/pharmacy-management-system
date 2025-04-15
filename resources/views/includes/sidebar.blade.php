@@ -17,6 +17,7 @@
 				</li>
 				@endcan
 
+                {{-- Start this Admin and Customer Segment see only products --}}
 				@can('view-products')
 				<li class="submenu">
 					<a href="#"><i class="fe fe-document"></i> <span> Products</span> <span class="menu-arrow"></span></a>
@@ -28,6 +29,27 @@
 					</ul>
 				</li>
 				@endcan
+                {{-- End tthis part Admin and Customer Segment see only products --}}
+
+                {{-- Start Customer Press Order --}}
+                {{-- @can('customer-vieworder') --}}
+                @can('customer-vieworder')
+				<li class="submenu">
+					<a href="#"><i class="fe fe-document"></i> <span> Customer Order</span> <span class="menu-arrow"></span></a>
+					<ul style="display: none;">
+						@can('customer-vieworder')
+                        <li><a class="{{ Request::routeIs(('orders')) ? 'active' : '' }}" href="{{route('orders')}}">Orders</a></li>
+                        @endcan
+
+						@can('customer-order')
+                        <li><a class="{{ Request::routeIs('add-order') ? 'active' : '' }}" href="{{route('add-order')}}">Add Order</a></li>
+                        @endcan
+					</ul>
+				</li>
+				@endcan
+                {{-- End Customer Press Order --}}
+
+
 
 				@can('view-purchase')
 				<li class="submenu">

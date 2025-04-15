@@ -13,7 +13,7 @@
 </div>
 @endpush
 
-@can('customer-view')
+@can('sales-dashboard')
 @section('content')
 
 	<div class="row">

@@ -7,6 +7,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PurchaseController;
@@ -68,6 +69,14 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('products/create',[ProductController::class,'store']);
     Route::post('products/{product}',[ProductController::class,'update']);
     Route::delete('products',[ProductController::class,'destroy']);
+
+
+    // Orders Routes
+    Route::get('orders',[OrderController::class,'index'])->name('orders');
+    Route::get('orders/create',[OrderController::class,'create'])->name('add-order');
+    Route::post('orders/create',[OrderController::class,'store']);
+    Route::post('orders/{product}',[OrderController::class,'update']);
+    Route::delete('orders',[OrderController::class,'destroy']);
 
     // Suppliers Routes
     Route::get('suppliers',[SupplierController::class,'index'])->name('suppliers');
