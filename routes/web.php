@@ -19,6 +19,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\PasswordChangeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,10 +47,17 @@ Route::group(['middleware'=>['guest']],function (){
     Route::post('forgot-password',[ForgotPasswordController::class,'reset']);
 });
 
+Route::get('/change-password', [PasswordChangeController::class, 'edit'])->name('password.change');
+Route::post('/change-password', [PasswordChangeController::class, 'update'])->name('password.update');
+
+Route::middleware(['auth', 'password.changed'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
 // Auth Routes
 Route::group(['middleware'=>['auth']],function (){
     // Dashboard Routes
-    Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+    // Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
     // Logout Routes
     Route::get('logout',[LogoutController::class,'index'])->name('logout');
