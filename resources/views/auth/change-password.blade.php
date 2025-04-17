@@ -1,49 +1,3 @@
-{{-- @extends('layouts.auth')
-
-@section('content')
-<div class="container">
-    <h2>Change Your Password</h2>
-
-    <form method="POST" action="{{ route('password.update') }}">
-        @csrf
-
-        <div class="mb-3">
-            <label for="password">New Password</label>
-            <input id="password" type="password" class="form-control" name="password" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="password_confirmation">Confirm Password</label>
-            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Change Password</button>
-    </form>
-</div>
-@endsection --}}
-
-
-{{-- @section('content')
-<h2>Change Your Password</h2>
-
-    <form method="POST" action="{{ route('password.update') }}">
-        @csrf
-
-        <div class="mb-3">
-            <label for="password">New Password</label>
-            <input id="password" type="password" class="form-control" name="password" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="password_confirmation">Confirm Password</label>
-            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Change Password</button>
-    </form> --}}
-
-
-
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -83,7 +37,6 @@
                                             <x-alerts.danger :error="$error" />
                                         @endforeach
                                     @endif
-                                    {{-- @yield('content') --}}
 
                                     <div class="container">
                                         <h3>Change Your Password</h3>
