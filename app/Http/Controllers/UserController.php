@@ -38,6 +38,7 @@ class UserController extends Controller
         $this->validate($request,[
             'name'=>'required|max:100',
             'email'=>'required|email',
+            'phone_number' => 'required',
             'role'=>'required',
             'password'=>'required|confirmed|max:100',
             'avatar'=>'file|image|mimes:jpg,jpeg,gif,png',
@@ -54,6 +55,7 @@ class UserController extends Controller
         $user = new User();
         $user_name = $user->name = $request->name;
         $user_email = $user->email = $request->email;
+        $user_phone_number = $user->phone_number = $request->phone_number;
         $user->password = Hash::make($plainPassword);
 
         $user->$imageName;
@@ -98,6 +100,7 @@ class UserController extends Controller
         $this->validate($request,[
             'name'=>'required|max:100',
             'email'=>'required|email',
+            'phone_number'=>'required',
             'avatar'=>'file|image|mimes:jpg,jpeg,gif,png',
         ]);
 
@@ -110,6 +113,7 @@ class UserController extends Controller
         auth()->user()->update([
             'name'=>$request->name,
             'email'=>$request->email,
+            'phone_number'=>$request->phone_number,
             'avatar'=>$imageName,
         ]);
 
@@ -175,6 +179,7 @@ class UserController extends Controller
         $this->validate($request,[
             'name'=>'required|max:100',
             'email'=>'required|email',
+            'phone_number' => 'required',
             'password'=>'required|confirmed|max:200',
             'avatar'=>'file|image|mimes:jpg,jpeg,gif,png',
         ]);
@@ -189,6 +194,7 @@ class UserController extends Controller
         $user = User::find($request->id);
         $user->name = $request->name;
         $user_email = $request->email;
+        $user->phone_number = $request->phone_number;
         $user->password = Hash::make($request->password);
         $user->$imageName;
         $user->assignRole($request->role);
@@ -213,7 +219,7 @@ class UserController extends Controller
             }
             return redirect()->back();
         });
-        // dd($id);
+
         $user = User::findOrFail($id);
         $notification = User::findOrFail($id)->update(['password' => bcrypt('123456')]);
 

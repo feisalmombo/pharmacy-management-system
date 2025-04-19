@@ -32,6 +32,7 @@
 								<th>Name</th>
 								<th>Email</th>
 								<th>Role</th>
+								<th>Phone Number</th>
 								<th>Reset Password</th>
 								<th>Created date</th>
 								<th class="text-center action-btn">Actions</th>
@@ -60,6 +61,9 @@
 									@endforeach
 								</td>
 								@endcan
+                                <td>
+                                    {{ $user->phone_number }}
+                                </td>
 
                                 <td><a href="users/reset/{{$user->id}}" >
                                     <span class="fa-passwd-reset fa-stack">
@@ -115,6 +119,14 @@
 								<input type="email" name="email" class="form-control">
 							</div>
 						</div>
+
+                        <div class="col-12">
+							<div class="form-group">
+								<label>Phone Number</label>
+								<input type="tel" name="phone_number" class="form-control">
+							</div>
+						</div>
+
 						<div class="col-12">
 							<div class="form-group">
 								<label>Role</label>
@@ -188,6 +200,14 @@
 								<input type="email" name="email" class="form-control edit_email" id="email">
 							</div>
 						</div>
+
+                        <div class="col-12">
+							<div class="form-group">
+								<label for="phone_number">Phone Number</label>
+								<input type="tel" name="phone_number" class="form-control edit_phone_number" id="phone_number">
+							</div>
+						</div>
+
 						@can('update-role')
 						<div class="col-12">
 							<div class="form-group">
@@ -253,10 +273,12 @@
 				var name = $(this).data('name');
 				var email = $(this).data('email');
 				var role = $(this).data('role');
+				var phone_number = $(this).data('phone_number');
 				$('#edit_id').val(id);
 				$('.edit_name').val(name);
 				$('.edit_email').val(email);
 				$('.edit_role').val(role);
+				$('.edit_phone_number').val(phone_number);
 			});
 			//
 

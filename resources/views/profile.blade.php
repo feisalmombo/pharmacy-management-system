@@ -68,6 +68,11 @@
 									<p class="col-sm-10">{{auth()->user()->email}}</p>
 								</div>
 
+                                <div class="row">
+									<p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Phone Number</p>
+									<p class="col-sm-10">{{auth()->user()->phone_number}}</p>
+								</div>
+
 								<div class="row">
 									<p class="col-sm-2 text-muted text-sm-right mv-0 mb-sm-3">User Role</p>
 									<p class="col-sm-10">
@@ -106,6 +111,14 @@
 														<input class="form-control" name="email" type="text" value="{{auth()->user()->email}}" placeholder="Email">
 													</div>
 												</div>
+
+                                                <div class="col-12">
+													<div class="form-group">
+														<label>Phone Number</label>
+														<input class="form-control" name="phone_number" type="tel" value="{{auth()->user()->phone_number}}" placeholder="Phone Number">
+													</div>
+												</div>
+
 												@can('update-role')
 												<div class="col-12">
 													<div class="form-group">

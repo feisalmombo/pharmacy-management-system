@@ -24,7 +24,13 @@ public function update(Request $request)
     $user->password_changed = true;
     $user->save();
 
-    return redirect()->route('dashboard')->with('status', 'Password changed successfully!');
+    $notification =array(
+        'message'=>'Password changed successfully!',
+        'alert-type'=>'success'
+    );
+
+    return redirect()->route('dashboard')->with($notification);
+
 }
 
 }

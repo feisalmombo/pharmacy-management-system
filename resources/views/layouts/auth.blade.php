@@ -1,67 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>{{ucfirst(AppSettings::get('app_name', 'App'))}} - {{ucfirst($title)}}</title>
-		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="@if(!empty(AppSettings::get('logo'))) {{asset('storage/'.AppSettings::get('favicon'))}} @else{{asset('assets/img/favicon.png')}} @endif">
+  <head>
+  	<title>Change Password</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-		<!-- Fontawesome CSS -->
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{asset('login-montana/https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
 
-		<!-- Main CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="{{asset('login-montana/css/style.css')}}">
 
-		@yield('page-css')
+	</head>
+	<body class="img js-fullheight" style="background-image: url({{asset('login-montana/images/bg.jpg')}});">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					{{-- <img class="img-fluid rounded-circle" src="@if(!empty(AppSettings::get('logo'))) {{asset('storage/'.AppSettings::get('logo'))}} @else{{asset('assets/img/logo.jpg')}} @endif" alt="Logo" > --}}
+					<h1 style="color: hsla(345, 100%, 37%, 0.867)">MONTANA PHARMACY</h1>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
 
-		<!--[if lt IE 9]>
-			<script src="assets/js/html5shiv.min.js"></script>
-			<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
-    </head>
-    <body>
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <x-alerts.danger :error="$error" />
+                            @endforeach
+                        @endif
 
-		<!-- Main Wrapper -->
-        <div class="main-wrapper login-body">
-            <div class="login-wrapper">
-            	<div class="container">
-                	<div class="loginbox">
-                    	<div class="login-left">
-							<img class="img-fluid rounded-circle" src="@if(!empty(AppSettings::get('logo'))) {{asset('storage/'.AppSettings::get('logo'))}} @else{{asset('assets/img/logo.jpg')}} @endif" alt="Logo" >
-                            <h1 style="color: #ffffff">MONTANA PHARMACY</h1>
-                        </div>
-                        <div class="login-right">
-							<div class="login-right-wrap">
-								@if ($errors->any())
-									@foreach ($errors->all() as $error)
-										<x-alerts.danger :error="$error" />
-									@endforeach
-								@endif
-								@yield('content')
-							</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-		<!-- /Main Wrapper -->
+						@yield('content')
 
-    </body>
-	<!-- jQuery -->
-	<script src="assets/js/jquery-3.2.1.min.js"></script>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-	<!-- Bootstrap Core JS -->
-	<script src="assets/js/popper.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="{{asset('login-montana/js/jquery.min.js')}}"></script>
+  <script src="{{asset('login-montana/js/popper.js')}}"></script>
+  <script src="{{asset('login-montana/js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('login-montana/js/main.js')}}"></script>
 
-	<!-- Custom JS -->
-	<script src="assets/js/script.js"></script>
-	<script src="{{asset('js/app.js')}}"></script>
-
-	@yield('page-js')
+	</body>
 </html>
+
