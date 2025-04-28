@@ -38,14 +38,15 @@ class SalesController extends Controller
     {
         $this->validate($request,[
             'product'=>'required',
-            'quantity'=>'required|integer|min:1'
+            'quantity'=>'required|integer|min:1',
+            'discount'=>'nullable',
         ]);
 
         $sold_product = Product::find($request->product);
 
         /**Update quantity of
             sold item from
-         purchases
+            purchases
         **/
 
         $purchased_item = Purchase::find($sold_product->purchase->id);
@@ -61,10 +62,16 @@ class SalesController extends Controller
              * Calcualting item's total price
             **/
             $total_price = ($request->quantity) * ($sold_product->price);
+
+            // $price = $request->price;
+                if($request->discount >0){
+                $discount = ($request->discount) * ($total_price);
+                }
             Sales::create([
                 'product_id'=>$request->product,
                 'quantity'=>$request->quantity,
                 'total_price'=>$total_price,
+                'discount'=>$request->discount,
             ]);
 
             $notification = array(

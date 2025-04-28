@@ -21,7 +21,7 @@
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-	
+
 		<!-- Recent Orders -->
 		<div class="card">
 			<div class="card-body">
@@ -34,6 +34,7 @@
 								<th>Purchase Price</th>
 								<th>Quantity</th>
 								<th>Supplier</th>
+								<th>Created At</th>
 								<th>Expire Date</th>
 								<th class="action-btn">Action</th>
 							</tr>
@@ -55,6 +56,7 @@
 								<td>{{AppSettings::get('app_currency', '$')}}{{$purchase->price}}</td>
 								<td>{{$purchase->quantity}}</td>
 								<td>{{$purchase->supplier->name}}</td>
+								<td>{{date_format(date_create($purchase->created_at),"d M, Y")}}</td>
 								<td>{{date_format(date_create($purchase->expiry_date),"d M, Y")}}</td>
 								<td>
 									<div class="actions">
@@ -68,14 +70,14 @@
 								</td>
 							</tr>
 							@endforeach
-							
+
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 		<!-- /Recent Orders -->
-		
+
 	</div>
 </div>
 <!-- Delete Modal -->

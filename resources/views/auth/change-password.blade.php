@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
-  	<title>Change Password</title>
+<head>
+<title>Change Password</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -17,8 +17,9 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					{{-- <img class="img-fluid rounded-circle" src="@if(!empty(AppSettings::get('logo'))) {{asset('storage/'.AppSettings::get('logo'))}} @else{{asset('assets/img/logo.jpg')}} @endif" alt="Logo" > --}}
-					<h1 style="color: hsla(345, 100%, 37%, 0.867)">MONTANA PHARMACY</h1>
+					<img class="img-fluid rounded-circle" src="@if(!empty(AppSettings::get('logo'))) {{asset('storage/'.AppSettings::get('logo'))}} @else{{asset('assets/img/logo.jpg')}} @endif" alt="Logo" width="300"
+                    height="500">
+                    <h1 style="color: #ffffff"><strong>MONTANA PHARMACY</strong></h1>
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -30,7 +31,7 @@
                                     <x-alerts.danger :error="$error" />
                                 @endforeach
                             @endif
-                    <h5 class="mb-4 text-center" style="color: #ffffff">!! Change password before login !!</h5>
+                    {{-- <h5 class="mb-4 text-center" style="color: #ffffff">!! Change password before login !!</h5> --}}
 
                 <form method="POST" action="{{ route('password.update') }}" class="signin-form">
                     @csrf

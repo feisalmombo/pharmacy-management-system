@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+{{-- @extends('layouts.auth')
 
 @section('content')
 <h1>Register</h1>
@@ -27,4 +27,4 @@
 <div class="text-center dont-have">Already have an account? <a href="{{route('login')}}">Login</a></div>
 @endsection
 
-
+ --}}

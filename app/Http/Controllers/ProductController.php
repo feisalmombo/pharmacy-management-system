@@ -45,8 +45,18 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function expired(){
+        // $title = "expired Products";
+        // $products = Purchase::whereDate('expiry_date', '=', Carbon::now())->get();
+
         $title = "expired Products";
-        $products = Purchase::whereDate('expiry_date', '=', Carbon::now())->get();
+
+        // Get current date minus 6 months
+        $sixMonthsAgo = Carbon::now()->subMonths(6);
+
+        // Products older than 6 months
+        $products = Purchase::whereDate('expiry_date', '<=', $sixMonthsAgo)->get();
+
+        // return json_encode($products);
 
         return view('expired',compact(
             'title','products'

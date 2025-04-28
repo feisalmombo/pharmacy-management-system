@@ -36,7 +36,8 @@
 								<th>Price</th>
 								<th>Quantity</th>
 								<th>Discount</th>
-								<th>Expiry Date</th>
+								<th>Created at</th>
+								{{-- <th>Expiry Date</th> --}}
                                 @can('destroy-product')
 								<th class="action-btn">Action</th>
                                 @endcan
@@ -62,9 +63,8 @@
 									</td>
 									<td>{{$product->purchase->quantity}}</td>
 									<td>{{$product->discount}}%</td>
-									<td>
-									{{date_format(date_create($product->purchase->expiry_date),"d M, Y")}}</span>
-									</td>
+									<td>{{date_format(date_create($product->created_at),"d M,Y")}}</td>
+									{{-- <td>{{date_format(date_create($product->created_at),"d M, Y")}}</span></td> --}}
                                     @can('destroy-product')
 									<td>
 										<div class="actions">

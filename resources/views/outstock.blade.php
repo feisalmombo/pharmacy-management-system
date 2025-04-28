@@ -31,6 +31,7 @@
 								<th>Price</th>
 								<th>Quantity</th>
 								<th>Discount</th>
+								<th>Created at</th>
 								<th>Expire</th>
 								<th class="action-btn">Action</th>
 							</tr>
@@ -40,9 +41,9 @@
 							<tr>
 								<td>
 									<h2 class="table-avatar">
-										@if(!empty($product->image))
+										@if(!empty($product->purchase->image))
 										<span class="avatar avatar-sm mr-2">
-											<img class="avatar-img" src="{{asset('storage/products/'.$product->image)}}" alt="product image">
+											<img class="avatar-img" src="{{asset('storage/products/'.$product->purchase->image)}}" alt="product image">
 										</span>
 										@endif
 										{{$product->name}}
@@ -52,6 +53,7 @@
 								<td>{{AppSettings::get('app_currency', '$')}}{{$product->price}}</td>
 								<td><span class="btn btn-sm bg-danger-light">Only {{$product->quantity}}</span></td>
 								<td>{{$product->discount}}%</td>
+								<td>{{date_format(date_create($product->created_at),"d M, Y")}}</td>
 								<td>
 									<span class="btn btn-sm bg-success-light">
 										{{date_format(date_create($product->expiry_date),"d M, Y")}}</span>	</span>

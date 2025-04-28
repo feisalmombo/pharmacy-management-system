@@ -1,32 +1,7 @@
-{{-- @extends('layouts.auth')
-
-@section('content')
-<h1>Login</h1>
-@if (session('login_error'))
-<x-alerts.danger :error="session('login_error')" />
-@endif
-<!-- Form -->
-<form action="{{route('login')}}" method="post">
-	@csrf
-	<div class="form-group">
-		<input class="form-control" name="email" type="text" placeholder="Email">
-	</div>
-	<div class="form-group">
-		<input class="form-control" name="password" type="password" placeholder="Password">
-	</div>
-	<div class="form-group">
-		<button class="btn btn-primary btn-block" type="submit">Login</button>
-	</div>
-</form>
-<!-- /Form -->
-@endsection --}}
-
 @extends('layouts.auth')
 
 @section('content')
 
-
-<h5 class="mb-4 text-center" style="color: #ffffff">!! Login !!</h5>
 
             @if (session('login_error'))
             <x-alerts.danger :error="session('login_error')" />
@@ -57,7 +32,7 @@
                     </div>
 
                     {{-- <div class="w-50 text-md-right">
-                        <a href="#" style="color: #fff">Forgot Password</a>
+                        <a href="{{route('forgot-password')}}" style="color: #fff">Forgot Password</a>
                     </div> --}}
                 </div>
             </form>

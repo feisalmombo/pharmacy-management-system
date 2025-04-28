@@ -23,7 +23,7 @@
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-	
+
 		<!-- Recent Sales -->
 		<div class="card">
 			<div class="card-body">
@@ -34,7 +34,8 @@
 								<th>Medicine Name</th>
 								<th>Quantity</th>
 								<th>Total Price</th>
-								<th>Date</th>
+                                <th>Discount</th>
+								<th>Created At</th>
 								<th class="action-btn">Action</th>
 							</tr>
 						</thead>
@@ -45,6 +46,7 @@
 										<td>{{$sale->product->purchase->name}}</td>
 										<td>{{$sale->quantity}}</td>
 										<td>{{AppSettings::get('app_currency', '$')}} {{($sale->total_price)}}</td>
+                                        <td>{{ $sale->discount }}%</td>
 										<td>{{date_format(date_create($sale->created_at),"d M, Y")}}</td>
 										<td>
 											<div class="actions">
@@ -69,7 +71,7 @@
 			</div>
 		</div>
 		<!-- /Recent sales -->
-		
+
 	</div>
 </div>
 <!-- Delete Modal -->
@@ -92,7 +94,7 @@
 						<div class="col-12">
 							<div class="form-group">
 								<label>Product <span class="text-danger">*</span></label>
-								<select class="select2 form-select form-control" name="product"> 
+								<select class="select2 form-select form-control" name="product">
 									@foreach ($products as $product)
 										@if (!empty($product->purchase))
 											@if (!($product->purchase->quantity <= 0))
@@ -110,6 +112,14 @@
 								<input type="number" value="1" class="form-control" name="quantity">
 							</div>
 						</div>
+
+                        <div class="col-12">
+							<div class="form-group">
+								<label>Discount (%)</label>
+								<input class="form-control" type="text" name="discount" value="0">
+							</div>
+						</div>
+
 					</div>
 					<button type="submit" class="btn btn-primary btn-block">Save Changes</button>
 				</form>
@@ -138,7 +148,7 @@
 							<input type="hidden" id="edit_id" name="id">
 							<div class="form-group">
 								<label>Product <span class="text-danger">*</span></label>
-								<select class="select2 form-select form-control edit_product" name="product"> 
+								<select class="select2 form-select form-control edit_product" name="product">
 									@foreach ($products as $product)
 										@if (!empty($product->purchase))
 											@if (!($product->purchase->quantity <= 0))
@@ -182,7 +192,7 @@
 				$('#edit_id').val(id);
 				$('.edit_product').val(product);
 				$('.edit_quantity').val(quantity);
-				
+
 			});
 		});
 	</script>

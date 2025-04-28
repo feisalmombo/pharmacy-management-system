@@ -39,8 +39,8 @@ Route::group(['middleware'=>['guest']],function (){
     Route::post('login',[LoginController::class,'login']);
 
     //Register Routes
-    Route::get('register',[RegisterController::class,'index'])->name('register');
-    Route::post('register',[RegisterController::class,'store']);
+    // Route::get('register',[RegisterController::class,'index'])->name('register');
+    // Route::post('register',[RegisterController::class,'store']);
 
     // Forgot-password Routes
     Route::get('forgot-password',[ForgotPasswordController::class,'index'])->name('forgot-password');

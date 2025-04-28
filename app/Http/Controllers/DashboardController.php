@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Product;
 use App\Models\Sales;
 use App\Models\Setting;
 use App\Models\Category;
@@ -17,7 +18,14 @@ class DashboardController extends Controller
     public function index(){
         $title = "dashboard";
 
-        $total_purchases = Purchase::where('expiry_date','=',Carbon::now())->count();
+        // Get current date minus 6 months
+        $sixMonthsAgo = Carbon::now()->subMonths(6);
+
+        // Products older than 6 months
+        // $products = Purchase::whereDate('expiry_date', '<=', $sixMonthsAgo)->get();
+        // $total_purchases = Purchase::where('expiry_date','=',Carbon::now())->count();
+
+        $total_purchases = Purchase::whereDate('expiry_date', '<=', $sixMonthsAgo)->count();
         $total_categories = Category::count();
         $total_suppliers = Supplier::count();
         $total_sales = Sales::count();
@@ -38,7 +46,17 @@ class DashboardController extends Controller
 
 
 
-        $total_expired_products = Purchase::whereDate('expiry_date', '=', Carbon::now())->count();
+        // $total_expired_products = Purchase::whereDate('expiry_date', '=', Carbon::now())->count();
+
+        // Get current date minus 6 months
+        $sixMonthsAgo = Carbon::now()->subMonths(6);
+
+        // Products older than 6 months
+        // $products = Purchase::whereDate('expiry_date', '<=', $sixMonthsAgo)->get();
+
+        $total_expired_products = Purchase::whereDate('expiry_date', '<=', $sixMonthsAgo)->count();
+
+
         $latest_sales = Sales::whereDate('created_at','=',Carbon::now())->get();
         $today_sales = Sales::whereDate('created_at','=',Carbon::now())->sum('total_price');
 

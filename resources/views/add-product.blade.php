@@ -21,18 +21,18 @@
 	<div class="col-sm-12">
 		<div class="card">
 			<div class="card-body custom-edit-service">
-				
-		
+
+
 			<!-- Add Medicine -->
 			<form method="post" enctype="multipart/form-data" id="update_service" action="{{route('add-product')}}">
 				@csrf
 				<div class="service-fields mb-3">
 					<div class="row">
-						
+
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label>Product <span class="text-danger">*</span></label>
-								<select class="select2 form-select form-control" name="product"> 
+								<select class="select2 form-select form-control" name="product">
 									@foreach ($products as $product)
 										<option value="{{$product->id}}">{{$product->name}}</option>
 									@endforeach
@@ -41,7 +41,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="service-fields mb-3">
 					<div class="row">
 						<div class="col-lg-6">
@@ -57,12 +57,12 @@
 								<input class="form-control" type="text" name="discount" value="0">
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 
-								
-				
+
+
 				<div class="service-fields mb-3">
 					<div class="row">
 						<div class="col-lg-12">
@@ -71,11 +71,11 @@
 								<textarea class="form-control service-desc" name="description"></textarea>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
-				
-				
+
+
 				<div class="submit-section">
 					<button class="btn btn-primary submit-btn" type="submit" name="form_submit" value="submit">Submit</button>
 				</div>
@@ -85,7 +85,7 @@
 
 			</div>
 		</div>
-	</div>			
+	</div>
 </div>
 @endsection
 

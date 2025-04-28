@@ -21,7 +21,7 @@
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-	
+
 		<!-- Suppliers -->
 		<div class="card">
 			<div class="card-body">
@@ -35,13 +35,14 @@
 								<th>Email</th>
 								<th>Address</th>
 								<th>Company</th>
+								<th>Created At</th>
 								<th class="action-btn">Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($suppliers as $supplier)
 							<tr>
-								<td>										
+								<td>
 									{{$supplier->product}}
 								</td>
 								<td>{{$supplier->name}}</td>
@@ -49,6 +50,7 @@
 								<td>{{$supplier->email}}</td>
 								<td>{{$supplier->address}}</td>
 								<td>{{$supplier->company}}</td>
+								<td>{{date_format(date_create($supplier->created_at),"d M, Y")}}</td>
 								<td>
 									<div class="actions">
 										<a class="btn btn-sm bg-success-light" href="{{route('edit-supplier',$supplier)}}">
@@ -60,20 +62,20 @@
 									</div>
 								</td>
 							</tr>
-							@endforeach							
+							@endforeach
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 		<!-- /Suppliers-->
-		
+
 	</div>
 </div>
 <!-- Delete Modal -->
 <x-modals.delete :route="'suppliers'" :title="'Supplier'" />
 <!-- /Delete Modal -->
-@endsection	
+@endsection
 
 @push('page-js')
 	<!-- Select2 js-->

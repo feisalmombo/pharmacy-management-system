@@ -1,8 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-<h1>Forgot Password?</h1>
-<p class="account-subtitle">Enter your email to get a password reset link</p>
+{{-- <p class="account-subtitle">!! Enter your email to get a password reset link !!</p> --}}
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -24,5 +23,5 @@
 </form>
 <!-- /Form -->
 
-<div class="text-center dont-have">Remember your password? <a href="{{route('login')}}">Login</a></div>
+<div class="text-center dont-have">Please click to login. <a href="{{route('login')}}">Login</a></div>
 @endsection
