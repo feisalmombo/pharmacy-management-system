@@ -7,15 +7,11 @@
 
 @push('page-header')
 <div class="col-sm-7 col-auto">
-	<h3 class="page-title">Orders</h3>
+	<h3 class="page-title">All Orders</h3>
 	<ul class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-		<li class="breadcrumb-item active">Orders</li>
+		<li class="breadcrumb-item active">All Orders</li>
 	</ul>
-</div>
-
-<div class="col-sm-5 col">
-	<a href="{{route('add-order')}}" class="btn btn-primary float-right mt-2">Add New</a>
 </div>
 @endpush
 
@@ -23,7 +19,7 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<!-- Orders -->
+		<!-- All Orders -->
 		<div class="card">
 			<div class="card-body">
 				<div class="table-responsive">

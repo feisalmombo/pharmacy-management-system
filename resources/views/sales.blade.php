@@ -113,12 +113,12 @@
 							</div>
 						</div>
 
-                        <div class="col-12">
+                        {{-- <div class="col-12">
 							<div class="form-group">
 								<label>Discount (%)</label>
 								<input class="form-control" type="text" name="discount" value="0">
 							</div>
-						</div>
+						</div> --}}
 
 					</div>
 					<button type="submit" class="btn btn-primary btn-block">Save Changes</button>

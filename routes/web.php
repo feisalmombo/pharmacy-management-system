@@ -20,6 +20,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\PasswordChangeController;
+use App\Http\Controllers\AllOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ use App\Http\Controllers\PasswordChangeController;
 |
 */
 
+Route::group(['middleware' => 'ValidateButtonHistory'], function () {
 
 Route::group(['middleware'=>['guest']],function (){
     //Login Routes
@@ -82,9 +84,16 @@ Route::group(['middleware'=>['auth']],function (){
     // Orders Routes
     Route::get('orders',[OrderController::class,'index'])->name('orders');
     Route::get('orders/create',[OrderController::class,'create'])->name('add-order');
+    Route::get('orders/{order}',[OrderController::class,'show'])->name('edit-order');
     Route::post('orders/create',[OrderController::class,'store']);
-    Route::post('orders/{product}',[OrderController::class,'update']);
+    Route::post('orders/{order}',[OrderController::class,'update']);
     Route::delete('orders',[OrderController::class,'destroy']);
+
+    // SEE ALL CUSTOMERS ORDER
+    Route::get('all-orders',[AllOrderController::class,'index'])->name('all-orders');
+    Route::post('all-orders',[AllOrderController::class,'store']);
+    Route::put('all-orders',[AllOrderController::class,'update']);
+    Route::delete('all-orders',[AllOrderController::class,'destroy']);
 
     // Suppliers Routes
     Route::get('suppliers',[SupplierController::class,'index'])->name('suppliers');
@@ -152,4 +161,6 @@ Route::group(['middleware'=>['auth']],function (){
 // First Page Routes
 Route::get('/', function () {
     return redirect()->route('dashboard');
+});
+
 });

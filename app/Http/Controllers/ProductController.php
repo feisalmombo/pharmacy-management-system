@@ -152,7 +152,7 @@ class ProductController extends Controller
         if($request->discount >0){
            $price = $request->discount * $request->price;
         }
-       $product->update([
+        $product->update([
             'purchase_id'=>$request->product,
             'price'=>$price,
             'discount'=>$request->discount,

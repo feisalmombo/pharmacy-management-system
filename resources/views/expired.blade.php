@@ -38,7 +38,11 @@
 						</thead>
 						<tbody>
 							@foreach ($products as $product)
-							<tr>
+							<tr
+                                @if (\Carbon\Carbon::parse($product->expiry_date)->isPast())
+                                style="color: red;"
+                                @endif
+                            >
 								<td>
                                     {{-- Expired Products (Older than 6 Months) --}}
 									<h2 class="table-avatar">

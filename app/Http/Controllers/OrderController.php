@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,9 +16,13 @@ class OrderController extends Controller
     public function index()
     {
         $title = "Orders";
-        // $orders = Order::with('purchase')->get();
+        $orders = Order::get();
 
-        return view('orders');
+        // return json_encode($orders);
+
+        return view('orders',compact(
+            'title','orders',
+        ));
     }
 
     /**
@@ -40,7 +45,26 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name'=>'required|max:200',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        Order::create([
+            'name' => $request->name,
+            'quantity' => $request->quantity,
+            // 'status' => 'Pending',
+            'user_id' => Auth::id()
+        ]);
+
+        $notification =array(
+            'message'=>'Order placed successfully!',
+            'alert-type'=>'success'
+        );
+
+        return redirect()->route('orders')->with($notification);
+
     }
 
     /**
@@ -49,32 +73,34 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Request $request, $id)
     {
-        //
+        $title = "Edit Order";
+        $order = Order::find($id);
+
+        return view('edit-order',compact(
+            'title','order'
+        ));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Order $order)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|max:200',
+            'quantity'=>'required',
+        ]);
+
+        $order->update([
+                'name'=>$request->name,
+                'quantity'=>$request->quantity,
+            ]);
+
+        $notification=array(
+            'message'=>"Order has been updated has been updated",
+            'alert-type'=>'success',
+        );
+
+        return redirect()->route('orders')->with($notification);
     }
 
     /**
@@ -83,8 +109,16 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Request $request)
     {
-        //
+        $order = Order::find($request->id);
+        $order->delete();
+
+        $notification=array(
+            'message'=>"Order has been deleted",
+            'alert-type'=>'success',
+        );
+
+        return back()->with($notification);
     }
 }

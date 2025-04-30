@@ -10,7 +10,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route($route)}}" method="post">  
+            <form action="{{route($route)}}" method="post">
                 @csrf
                 @method("DELETE")
                 <div class="modal-body">

@@ -12,6 +12,8 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Notifications\StockAlert;
 use App\Events\ProductReachedLowStock;
+use Auth;
+use DB;
 
 class DashboardController extends Controller
 {
@@ -60,9 +62,46 @@ class DashboardController extends Controller
         $latest_sales = Sales::whereDate('created_at','=',Carbon::now())->get();
         $today_sales = Sales::whereDate('created_at','=',Carbon::now())->sum('total_price');
 
-        return view('dashboard',compact(
-            'title','pieChart','total_expired_products',
-            'latest_sales','today_sales','total_categories'
-        ));
+
+        $activity = Auth::user()->activiti;
+        $customer_id = Auth::user()->id; //customer-person
+
+        // return json_encode($customer_id);
+
+
+        if($activity === 'customer-person'){
+            $ordersCount = DB::table('orders')
+            ->join('users','orders.user_id','users.id')
+            ->where('orders.user_id',$customer_id)
+            ->latest()
+            ->count();
+            }else{
+                    $ordersCount = DB::table('orders')
+                    ->join('users','orders.user_id','users.id')
+                    ->where('orders.user_id',$customer_id)
+                    ->latest()
+                    ->count();
+            }
+            // return json_encode($ordersCount);
+
+            $customerPressOrderCount = DB::table('orders')
+            ->join('users','orders.user_id','users.id')
+            ->where('orders.user_id',$customer_id)
+            ->latest()
+            ->count();
+            // return json_encode($customerPressOrderCount);
+
+            // return view('dashboard',compact(
+            // 'title','pieChart','total_expired_products',
+            // 'latest_sales','today_sales','total_categories'
+
+            return view('dashboard')
+            ->with('title', $title)
+            ->with('pieChart', $pieChart)
+            ->with('total_expired_products', $total_expired_products)
+            ->with('latest_sales', $latest_sales)
+            ->with('today_sales', $today_sales)
+            ->with('total_categories', $total_categories)
+            ->with('customerPressOrderCount', $customerPressOrderCount);
     }
 }

@@ -36,13 +36,13 @@
 						</thead>
 						<tbody>
 							@foreach ($categories as $category)
-							<tr>								
+							<tr>
 								<td>
-									<h2 class="table-avatar">	
+									<h2 class="table-avatar">
 										{{$category->name}}
 									</h2>
 								</td>
-								
+
 								<td>{{date_format(date_create($category->created_at),"d M,Y")}}</td>
 
 								<td class="text-center">
@@ -56,13 +56,13 @@
 									</div>
 								</td>
 							</tr>
-							@endforeach							
+							@endforeach
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-	</div>			
+	</div>
 </div>
 
 <!-- Add Modal -->
@@ -116,7 +116,7 @@
 								<input type="text" class="form-control edit_name" name="name">
 							</div>
 						</div>
-						
+
 					</div>
 					<button type="submit" class="btn btn-primary btn-block">Save Changes</button>
 				</form>
@@ -149,5 +149,5 @@
 			//
 		});
 	</script>
-	
+
 @endpush

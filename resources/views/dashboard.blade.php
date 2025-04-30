@@ -7,13 +7,16 @@
 <div class="col-sm-12">
 	<h3 class="page-title">Welcome {{auth()->user()->name}}!</h3>
 	<ul class="breadcrumb">
-		<li class="breadcrumb-item active">Dashboard</li>
-        {{--  This Dashboard must be differentiate based on Roles and Permission for each users within the system  --}}
+		<li class="breadcrumb-item active">Dashboard</li> -
+            <p>This Dashboard must be differentiate based on roles and permission for each users within the system</p>
 	</ul>
 </div>
 @endpush
 
+
+{{-- SALES PERSON ROLES AND PERMISSIONS DASHBOARD --}}
 @can('sales-dashboard')
+
 @section('content')
 
 	<div class="row">
@@ -76,7 +79,8 @@
                         </div>
                         <div class="dash-widget-info">
 
-                            <h6 class="text-muted">Expired Products</h6>
+                            {{-- <h6 class="text-muted">Expired Products</h6> --}}
+                            <h6 class="text-muted">About to Expired products</h6>
                             <div class="progress progress-sm">
                                 <div class="progress-bar bg-danger w-50"></div>
                             </div>
@@ -188,13 +192,13 @@
 
 
 
-{{-- Customer Dashboard --}}
+{{-- CUSTOMER ROLES AND PERMISSIONS DASHBOARD --}}
 @can('customer-dashboard')
 @section('content')
 
 	<div class="row">
 		<div class="col-xl-3 col-sm-6 col-12">
-            <a href="#">
+            <a href="{{ route('orders') }}">
                 <div class="card">
                     <div class="card-body">
                         <div class="dash-widget-header">
@@ -202,7 +206,7 @@
                                 <i class="fe fe-money"></i>
                             </span>
                             <div class="dash-count">
-                                <h3>10</h3>
+                                <h3>{!!  $customerPressOrderCount !!}</h3>
                             </div>
                         </div>
                         <div class="dash-widget-info">

@@ -26,52 +26,20 @@
 			<!-- Add Order -->
 			<form method="post" enctype="multipart/form-data" id="update_service" action="{{route('add-order')}}">
 				@csrf
-				<div class="service-fields mb-3">
-					<div class="row">
-
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label>Product Name <span class="text-danger">*</span></label>
-								<select class="select2 form-select form-control" name="product">
-									{{-- @foreach ($products as $product) --}}
-										{{-- <option value="{{$product->id}}">{{$product->name}}</option> --}}
-									{{-- @endforeach --}}
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-                <div class="service-fields mb-3">
-					<div class="row">
-
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label>Category Name <span class="text-danger">*</span></label>
-								<select class="select2 form-select form-control" name="category">
-									{{-- @foreach ($products as $product) --}}
-										{{-- <option value="{{$product->id}}">{{$product->name}}</option> --}}
-									{{-- @endforeach --}}
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
 
 				<div class="service-fields mb-3">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Quantity<span class="text-danger">*</span></label>
-								<input class="form-control" type="text" name="price">
+								<label>Name<span class="text-danger">*</span></label>
+								<input class="form-control" type="text" name="name">
 							</div>
 						</div>
 
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Amount<span class="text-danger">*</span></label>
-								<input class="form-control" type="text" name="discount">
+								<label>Quantity<span class="text-danger">*</span></label>
+								<input class="form-control" type="text" name="quantity">
 							</div>
 						</div>
 

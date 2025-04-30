@@ -33,6 +33,8 @@
 
                 {{-- Start Customer Press Order --}}
                 {{-- @can('customer-vieworder') --}}
+
+                @if(Auth::user()->hasRole('customer-person'))
                 @can('customer-vieworder')
 				<li class="submenu">
 					<a href="#"><i class="fe fe-document"></i> <span> Customer Order</span> <span class="menu-arrow"></span></a>
@@ -48,6 +50,17 @@
 				</li>
 				@endcan
                 {{-- End Customer Press Order --}}
+                @endif
+
+                {{-- VIEW ALL ORDERS --}}
+                {{-- @can('view-reports') --}}
+				<li class="submenu">
+					<a href="#"><i class="fe fe-document"></i> <span> All orders</span> <span class="menu-arrow"></span></a>
+					<ul style="display: none;">
+						<li><a class="{{ Request::routeIs('all-orders') ? 'active' : '' }}" href="{{route('all-orders')}}">All orders</a></li>
+					</ul>
+				</li>
+				{{-- @endcan --}}
 
 
 
